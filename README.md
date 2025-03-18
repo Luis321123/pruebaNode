@@ -77,15 +77,11 @@ DELETE	           /users/:id	              Eliminar un usuario
 🏰 Estructura del Proyecto
 
 ├── src
+│   ├── config.ts     # Punto de entrada del servidor
 │   ├── controllers   # Manejadores de rutas
-│   ├── models        # Esquemas de base de datos
-│   ├── routes        # Rutas de Express
-│   ├── services      # Lógica de negocio
-│   ├── utils         # Funciones auxiliares
-│   ├── config        # Archivos de configuración
-│   ├── middlewares   # Middlewares de Express
-│   ├── app.ts        # Instancia de Express
-│   ├── server.ts     # Punto de entrada del servidor
+│   ├── db            # Esquemas de base de datos
+│   ├── helpers       # Funciones auxiliares
+│   ├── router        # Rutas de Express
 ├── .env              # Variables de entorno
 ├── package.json      # Dependencias del proyecto
 ├── tsconfig.json     # Configuración de TypeScript

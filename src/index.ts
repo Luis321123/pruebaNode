@@ -4,34 +4,30 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import compression from 'compression';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import connectDB from './config/db';
 import router from './router';
 
 dotenv.config();
 
+if (!process.env.PORT || !process.env.MONGODB_URI) {
+    console.error("Faltan variables de entorno requeridas.");
+    process.exit(1);
+}
+
 const app = express();
 
-app.use(cors({
-    credentials: true,
-
-}));
+app.use(cors({ credentials: true }));
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
+
+connectDB();
+
 const server = http.createServer(app);
 
 server.listen(process.env.PORT, () => {
-    console.log("listenting port https://localhost:3000");
+    console.log(`Servidor escuchando en http://localhost:${process.env.PORT}`);
 });
-const MONGODB_URI = process.env.MONGODB_URI;
 
-mongoose.connect(MONGODB_URI)
-    .then(() => {
-        console.log('Conectado a MongoDB');
-    })
-    .catch((error) => {
-        console.error('Error al conectar a MongoDB:', error);
-    });
-
-app.use('/', router());
+app.use('/', router);
