@@ -47,7 +47,6 @@ export const validateUserUpdate = (data: any) => {
     return errores;
 };
 
-
 /**this validawte if the id is a valid id of the user
  * @param {string} id - id of the user that youu wanna validate
  * @returns {boolean} - `true` if is valid, `false if not. 

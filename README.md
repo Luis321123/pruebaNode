@@ -1,10 +1,5 @@
-readme de github
-ChatGPT dijo:
-Aquí tienes el contenido listo para copiar y pegar en tu README de GitHub:
 
-md
-Copiar
-Editar
+
 <div align="center">
 
 # Prueba Técnica: API para Prueba
@@ -56,19 +51,16 @@ Esta API es el componente del lado del servidor, desarrollado con *Node.js* y *T
 
 git clone https://github.com/Luis321123/pruebaNode.git
 cd pruebaNode
-Instalar dependencias
-bash
-Copiar
-Editar
-npm install
+npm install   #Instalar dependencias
+
 Configurar variables de entorno
 
 Crear un archivo .env en la raíz del proyecto y agregar las variables de entorno necesarias.
 
 
 Ejecutar el servidor
+npm start # principal para que corra  
 npm run dev  # Para desarrollo
-npm start  
 
 📌 Endpoints de la API
 
