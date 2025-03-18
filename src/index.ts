@@ -6,6 +6,8 @@ import cors from 'cors';
 import compression from 'compression';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import router from './router';
+
 dotenv.config();
 
 const app = express();
@@ -31,3 +33,5 @@ mongoose.connect(MONGODB_URI)
     .catch((error) => {
         console.error('Error al conectar a MongoDB:', error);
     });
+
+app.use('/', router());
