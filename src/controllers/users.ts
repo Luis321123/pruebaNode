@@ -8,15 +8,15 @@ export const getAllUsers = async (req: express.Request, res: express.Response) =
     try {
         const { page, limit } = getPaginationParams(req.query);
 
-        const [users, totalUsers] = await Promise.all([
-            getUsers(page, limit),
-            UserModel.countDocuments()
-        ]);
+        const pageNumber = Math.max(Number(page) || 1, 1);
+        const limitNumber = Math.max(Number(limit) || 10, 1);
+        const skip = (pageNumber - 1) * limitNumber;
+
+        const [users] = await Promise.all([
+            UserModel.find().skip(skip).limit(limitNumber)]);
 
         return res.status(200).json({
-            totalUsers,
-            totalPages: Math.ceil(totalUsers / limit),
-            currentPage: page,
+            currentPage: pageNumber,
             users
         });
     } catch (error) {
@@ -24,6 +24,7 @@ export const getAllUsers = async (req: express.Request, res: express.Response) =
         return res.status(500).json({ message: "Error interno del servidor" });
     }
 };
+
 
 export const getUserByAnId = async (req: express.Request, res: express.Response) => {
     try {
