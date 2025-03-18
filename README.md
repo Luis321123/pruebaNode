@@ -1,10 +1,5 @@
-readme de github
-ChatGPT dijo:
-Aquí tienes el contenido listo para copiar y pegar en tu README de GitHub:
 
-md
-Copiar
-Editar
+
 <div align="center">
 
 # Prueba Técnica: API para Prueba
