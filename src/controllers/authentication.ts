@@ -4,9 +4,9 @@ import { authentication, random } from '../helpers';
 
 export const register = async (req: express.Request, res: express.Response) => {
     try{
-        const{email, password, nombre, edad, direccion} = req.body;
+        const{email, nombre, edad, direccion} = req.body;
         
-        if (!email || !password || !nombre|| !edad || !direccion) {
+        if (!email || !nombre || !direccion) {
             return res.sendStatus(400);
         }
         const existingUser = await getUserByEmail(email);
@@ -15,14 +15,9 @@ export const register = async (req: express.Request, res: express.Response) => {
             return res.status(409).json({ message: 'Ya hay un usuario con ese email' });
         }
 
-        const salt = random();
         const user = await createUser({
             email,
             nombre,
-            authentication:{
-                salt,
-                password:authentication(salt,password),
-            },
             edad,
             fecha_creacion: Date.now(),
             direccion:{
@@ -44,26 +39,21 @@ export const register = async (req: express.Request, res: express.Response) => {
 export const update = async (req: express.Request, res: express.Response) => {
     try{
         const { id } = req.params;
-        const{email, password, nombre, edad, direccion} = req.body;
-        
+        const{email, nombre, edad, direccion} = req.body;
 
-        if (!email || !password || !nombre || !edad || !direccion) {
-            return res.sendStatus(400);
+        if (!email || !nombre || !edad || !direccion) {
+            return res.status(400).json({ message: 'hay un campo que no cumple con los requisitos o faltan por completar' });
         }
         const existingUser = await getUserById(id);
         
         if (!existingUser) {
-            return res.sendStatus(400);
+            return res.sendStatus(400).json({ message: 'No hay un usuario el cual se pueda actualizar' });
         }
 
         const salt = random();
         const user = await updateUserById(id,{
             email,
             nombre,
-            authentication:{
-                salt,
-                password:authentication(salt,password),
-            },
             edad,
             direccion:{
                 calle: direccion.calle,
