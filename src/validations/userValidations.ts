@@ -18,7 +18,6 @@ export const validateUser = (data: any) => {
 
     return errores;
 };
-
 export const validateUserUpdate = (data: any) => {
     const errores: string[] = [];
     const { email, nombre, edad, direccion } = data;
