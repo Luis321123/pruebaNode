@@ -1,33 +1,32 @@
 import express from 'express';
 import http from 'http';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
-import compression from 'compression';
 import dotenv from 'dotenv';
-import connectDB from './config/db';
+import { connectDB } from './config/db';
 import router from './router';
 
 dotenv.config();
 
-if (!process.env.PORT || !process.env.MONGODB_URI) {
-    console.error("Faltan variables de entorno requeridas.");
-    process.exit(1);
-}
-
 const app = express();
 
-app.use(cors({ credentials: true }));
-app.use(compression());
-app.use(cookieParser());
-app.use(bodyParser.json());
+app.use(express.json()); 
 
-connectDB();
 
-const server = http.createServer(app);
+const PORT = process.env.PORT
 
-server.listen(process.env.PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${process.env.PORT}`);
-});
+const startServer = async () => {
+    try {
+        await connectDB(); 
+        
+        const server = http.createServer(app);
+        server.listen(PORT, () => {
+            console.log(`Servidor corriendo en http://localhost:${PORT}`);
+        });
+        
+    } catch (error) {
+        console.error(' Error al iniciar el servidor:', error);
+        process.exit(1); 
+    }
+};
+app.use('/', router());
 
-app.use('/', router);
+startServer();

@@ -1,13 +1,19 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const connectDB = async () => {
+dotenv.config();
+const MONGODB_URI = process.env.MONGODB_URI;
+export const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI as string);
-        console.log('Conectado a MongoDB');
+        console.log('Conectando a MongoDB...');
+        await mongoose.connect(MONGODB_URI)
+        .then(() => {
+            console.log('Conectado a MongoDB');
+        })
+        .catch((error) => {
+            console.error('Error al conectar a MongoDB:', error);
+        });
     } catch (error) {
         console.error('Error al conectar a MongoDB:', error);
-        process.exit(1);
     }
 };
-
-export default connectDB;
