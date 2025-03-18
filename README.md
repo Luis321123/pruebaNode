@@ -1,31 +1,28 @@
-Sellervate Backend
+# Prueba Técnica: API para Prueba
 
-🚀 Descripción General
+## Descripción General
 
-prueba tecnica de una api que es el componente del lado del servidor, desarrollado con Node.js y TypeScript. Proporciona APIs robustas y servicios para gestionar las operaciones de servicio al cliente de vendedores de Amazon.
+Esta API es el componente del lado del servidor, desarrollado con *Node.js* y *TypeScript*.  API simple para gestionar personas y sus lugares de origenes
 
-🛠 Tecnologías Principales
+---
 
-Node.js - Entorno de ejecución de JavaScript
+## 🛠 Tecnologías Principales
 
-TypeScript - Superset tipado de JavaScript
+- *Node.js*: Entorno de ejecución de JavaScript.
+- *TypeScript*: Superset tipado de JavaScript.
+- *Express.js*: Framework web para Node.js.
+- *MongoDB*: Base de datos NoSQL.
+- *Mongoose*: ODM (Object Data Modeling) para MongoDB.
 
-Express.js - Framework web para Node.js
+---
 
-MongoDB - Base de datos NoSQL
+## 📋 Requisitos Previos
 
-Mongoose - ODM para MongoDB
+- *Node.js*: Versión >= 16.x.
+- *npm*: Versión >= 8.x.
+- *MongoDB*: Versión >= 5.x.
+- *Git*: Sistema de control de versiones.
 
-
-📋 Requisitos Previos
-
-Node.js >= 16.x
-
-npm >= 8.x
-
-MongoDB >= 5.x
-
-Git
 
 🔧 Instalación
 
