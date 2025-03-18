@@ -1,6 +1,5 @@
 import express from 'express';
 import { createUser, getUserByEmail, updateUserById, deleteUserById, getUserById} from '../db/users';
-import { authentication, random } from '../helpers';
 
 export const register = async (req: express.Request, res: express.Response) => {
     try{
@@ -50,7 +49,6 @@ export const update = async (req: express.Request, res: express.Response) => {
             return res.sendStatus(400).json({ message: 'No hay un usuario el cual se pueda actualizar' });
         }
 
-        const salt = random();
         const user = await updateUserById(id,{
             email,
             nombre,
